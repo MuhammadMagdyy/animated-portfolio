@@ -48,28 +48,28 @@ const Work = () => {
       category: "AI-Powered RAG",
       tools: "FastAPI, Groq, Inngest, Docker",
       link: "https://github.com/MuhammadMagdyy/rag-stanza-engine",
-      image: "/images/work/stanza.jpeg"
+      image: import.meta.env.BASE_URL + "images/work/stanza.jpeg"
     },
     {
       title: "Athar",
       category: "Full-Stack Web App",
       tools: "Next.js, TypeScript, TailwindCSS",
       link: "https://github.com/MuhammadMagdyy/athar-portfolio",
-      image: "/images/work/athar.png"
+      image: import.meta.env.BASE_URL + "images/work/athar.png"
     },
     {
       title: "Amelio",
       category: "Online Learning System",
       tools: "MERN Stack, Stripe, JWT, MVC",
       link: "https://github.com/MuhammadMagdyy/Advanced-Computer-Lab-2022-BlueHats",
-      image: "/images/work/amelio.png"
+      image: import.meta.env.BASE_URL + "images/work/amelio.png"
     },
     {
       title: "Imperium-Conqueror",
       category: "Java Strategy Game",
       tools: "Java, OOP, Design Patterns",
       link: "https://github.com/MuhammadMagdyy/Imperium-Conqueror",
-      image: "/images/work/conqueror.png"
+      image: import.meta.env.BASE_URL + "images/work/conqueror.png"
     }
   ];
 

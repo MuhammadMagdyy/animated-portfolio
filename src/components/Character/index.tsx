@@ -90,7 +90,7 @@ const CharacterModel = () => {
     }
 
     const startSequence = () => {
-      const loadingAudio = new Audio("/loading.wav");
+      const loadingAudio = new Audio(import.meta.env.BASE_URL + "loading.wav");
       loadingAudio.volume = 0.5;
 
       const duration = 7000; // 7 seconds (matches loading.wav)
