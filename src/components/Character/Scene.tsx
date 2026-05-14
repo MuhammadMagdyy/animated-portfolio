@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import gsap from "gsap";
 import setCharacter from "./utils/character";
 import setLighting from "./utils/lighting";
 import { useLoading } from "../../context/LoadingProvider";
@@ -61,6 +62,44 @@ const Scene = () => {
           let character = gltf.scene;
           setChar(character);
           scene.add(character);
+
+          // Add Ultron Reactor to Chest
+          const chestBone = character.getObjectByName("spine005") || character.getObjectByName("spine004");
+          if (chestBone) {
+            const reactorGeometry = new THREE.CylinderGeometry(0.35, 0.35, 0.1, 32);
+            const reactorMaterial = new THREE.MeshStandardMaterial({
+              color: 0xff0000,
+              emissive: 0xff0000,
+              emissiveIntensity: 6,
+              metalness: 0.8,
+              roughness: 0.2,
+            });
+            const reactor = new THREE.Mesh(reactorGeometry, reactorMaterial);
+            reactor.rotation.x = Math.PI / 2; // Face outward
+            reactor.position.set(0, 0.5, 1.3); // Adjust position to sit on chest
+            
+            const redGlow = new THREE.PointLight(0xff0000, 15, 6);
+            reactor.add(redGlow);
+            
+            chestBone.add(reactor);
+            
+            // Heartbeat glow effect
+            gsap.to(reactorMaterial, {
+              emissiveIntensity: 2,
+              duration: 1.2,
+              yoyo: true,
+              repeat: -1,
+              ease: "sine.inOut"
+            });
+            gsap.to(redGlow, {
+              intensity: 5,
+              duration: 1.2,
+              yoyo: true,
+              repeat: -1,
+              ease: "sine.inOut"
+            });
+          }
+
           headBone = character.getObjectByName("spine006") || null;
           screenLight = character.getObjectByName("screenlight") || null;
           progress.loaded().then(() => {
