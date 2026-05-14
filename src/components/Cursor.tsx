@@ -13,6 +13,12 @@ const Cursor = () => {
       mousePos.x = e.clientX;
       mousePos.y = e.clientY;
     });
+    document.addEventListener("touchmove", (e) => {
+      if (e.touches.length > 0) {
+        mousePos.x = e.touches[0].clientX;
+        mousePos.y = e.touches[0].clientY;
+      }
+    });
     requestAnimationFrame(function loop() {
       if (!hover) {
         const delay = 6;
