@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useLoading } from "../../context/LoadingProvider";
-import { setProgress } from "../Loading";
 import { setCharTimeline, setAllTimeline } from "../utils/GsapScroll";
 
 declare global {
@@ -64,7 +63,7 @@ const CharacterModel = () => {
     let isLoaded = false;
     let audioFinished = false;
     let splineLoaded = false;
-    let fallbackTimer: NodeJS.Timeout;
+    let fallbackTimer: ReturnType<typeof setTimeout>;
 
     const checkCompletion = () => {
       if (splineLoaded && audioFinished && !isLoaded) {
@@ -94,7 +93,7 @@ const CharacterModel = () => {
       const loadingAudio = new Audio("/loading.wav");
       loadingAudio.volume = 0.5;
 
-      let animationFrameId: number;
+      let _animationFrameId: number;
       const duration = 7000; // 7 seconds (matches loading.wav)
       const startTime = Date.now();
 
