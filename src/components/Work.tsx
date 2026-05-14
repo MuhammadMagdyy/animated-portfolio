@@ -1,7 +1,6 @@
 import "./styles/Work.css";
 import WorkImage from "./WorkImage";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(useGSAP);
@@ -25,7 +24,7 @@ const Work = () => {
     );
 
     // Staggered reveal for each project card
-    gsap.utils.toArray(".work-box").forEach((box: any, i) => {
+    gsap.utils.toArray(".work-box").forEach((box: any) => {
       gsap.fromTo(
         box,
         { opacity: 0, y: 100 },

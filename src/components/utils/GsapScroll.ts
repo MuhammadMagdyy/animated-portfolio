@@ -3,7 +3,7 @@ import gsap from "gsap";
 
 export function setCharTimeline(
   character: THREE.Object3D<THREE.Object3DEventMap> | null,
-  camera: THREE.PerspectiveCamera
+  _camera: THREE.PerspectiveCamera
 ) {
   let intensity: number = 0;
   setInterval(() => {
@@ -36,14 +36,12 @@ export function setCharTimeline(
       invalidateOnRefresh: true,
     },
   });
-  let screenLight: any, monitor: any;
   character?.children.forEach((object: any) => {
     if (object.name === "Plane004") {
       object.children.forEach((child: any) => {
         child.material.transparent = true;
         child.material.opacity = 0;
         if (child.material.name === "Material.027") {
-          monitor = child;
           child.material.color.set("#FFFFFF");
         }
       });
@@ -57,10 +55,9 @@ export function setCharTimeline(
         duration: () => Math.random() * 0.6,
         delay: () => Math.random() * 0.1,
       });
-      screenLight = object;
     }
   });
-  let neckBone = character?.getObjectByName("spine005");
+
   if (window.innerWidth > 1024) {
     tl1
       .fromTo(".character-model", { x: 0, opacity: 1 }, { x: "100%", opacity: 0, duration: 3 }, 0)
