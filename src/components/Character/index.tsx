@@ -93,7 +93,6 @@ const CharacterModel = () => {
       const loadingAudio = new Audio("/loading.wav");
       loadingAudio.volume = 0.5;
 
-      let _animationFrameId: number;
       const duration = 7000; // 7 seconds (matches loading.wav)
       const startTime = Date.now();
 
@@ -104,7 +103,7 @@ const CharacterModel = () => {
           setLoading(percent);
 
           if (elapsed < duration) {
-            animationFrameId = requestAnimationFrame(syncProgress);
+            requestAnimationFrame(syncProgress);
           } else {
             audioFinished = true;
             checkCompletion();
@@ -116,7 +115,7 @@ const CharacterModel = () => {
         console.log("Audio autoplay prevented by browser:", e);
       });
 
-      animationFrameId = requestAnimationFrame(syncProgress);
+      requestAnimationFrame(syncProgress);
     };
 
     window.addEventListener('start-loading-sequence', startSequence);
