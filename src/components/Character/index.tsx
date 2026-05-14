@@ -20,7 +20,7 @@ const CharacterModel = () => {
   const hasLeftTop = useRef(false);
 
   useEffect(() => {
-    audioRef.current = new Audio("/ultron.wav");
+    audioRef.current = new Audio(import.meta.env.BASE_URL + "ultron.wav");
   }, []);
 
   useEffect(() => {
