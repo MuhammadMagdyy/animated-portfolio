@@ -1,33 +1,104 @@
 .about-section {
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
   place-items: center;
   position: relative;
   opacity: 1;
   height: auto;
   width: var(--cWidth);
   margin: auto;
+  padding-top: 100px;
 }
+
 .about-me {
   padding: 50px 0px;
   padding-bottom: 0;
-  width: 500px;
-  max-width: calc(100% - 15px);
+  width: 100%;
+  max-width: 600px;
 }
-.about-me h3 {
+
+.about-me h3.title {
   font-size: 25px;
   text-transform: uppercase;
   letter-spacing: 7px;
-  font-weight: 400;
-  color: var(--accentColor);
+  font-weight: 600;
+  color: var(--accentColor); /* Sunset Crimson Red */
+  margin-bottom: 40px;
+  text-shadow: 0 0 10px rgba(255, 65, 108, 0.3);
 }
 
-.about-me p {
-  font-size: 33px;
-  font-weight: 600;
-  line-height: 36px;
+.about-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.about-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 30px;
+  transition: all 0.4s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 65, 108, 0.1),
+    transparent
+  );
+  transition: all 0.6s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 65, 108, 0.4);
+  box-shadow: 0 10px 30px rgba(255, 65, 108, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.about-card:hover::before {
+  left: 100%;
+}
+
+.about-card.highlight {
+  border: 1px solid rgba(255, 65, 108, 0.2);
+  background: linear-gradient(135deg, rgba(255, 65, 108, 0.05) 0%, rgba(255, 65, 108, 0.05) 100%);
+}
+
+.about-card h4 {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 15px;
   letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.about-card p {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.about-card p span {
+  color: var(--accentColor);
+  font-weight: 500;
 }
 
 @media only screen and (min-width: 600px) {
@@ -35,37 +106,52 @@
     justify-content: center;
   }
 }
+
 @media only screen and (min-width: 768px) {
   .about-me {
-    width: 500px;
+    width: 600px;
     max-width: calc(100% - 70px);
     transform: translateY(0%);
   }
   .about-section {
     opacity: 1;
   }
+  .about-card p {
+    font-size: 1.1rem;
+  }
 }
+
 @media only screen and (min-width: 1025px) {
   .about-section {
     width: var(--cWidth);
-    justify-content: right;
+    justify-content: center;
     max-width: 1920px;
-    height: var(--vh);
-    padding: 0px;
+    min-height: var(--vh);
+    padding: 100px 0px;
     opacity: 1;
   }
   .about-me {
     padding: 0px;
-    width: 50%;
+    width: 60%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
   }
-  .about-me p {
-    font-size: 1.9vw;
-    line-height: 2.3vw;
+  .about-card p {
+    font-size: 1.15vw;
+    line-height: 1.8vw;
+  }
+  .about-card h4 {
+    font-size: 1.4vw;
   }
 }
+
 @media only screen and (min-width: 1950px) {
-  .about-me p {
-    font-size: 2.5rem;
-    line-height: 2.7rem;
+  .about-card p {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+  }
+  .about-card h4 {
+    font-size: 1.6rem;
   }
 }

@@ -27,17 +27,7 @@
   padding-right: 120px;
   position: relative;
 }
-.work-box {
-  padding: 80px;
-  display: flex;
-  flex-direction: column;
-  width: 600px;
-  box-sizing: border-box;
-  border-right: 1px solid #363636;
-  flex-shrink: 0;
-  gap: 50px;
-  justify-content: start;
-}
+/* removed to prevent duplicate work-box definition */
 .work-flex .work-box:nth-child(even) {
   flex-direction: column-reverse;
 }
@@ -128,6 +118,42 @@
 .work-image img {
   max-width: 100%;
   max-height: 350px;
+  filter: grayscale(100%);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.work-image-wrapper {
+  overflow: hidden;
+  border-radius: 16px;
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.work-box {
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  box-sizing: border-box;
+  border-right: 1px solid #363636;
+  flex-shrink: 0;
+  gap: 50px;
+  justify-content: start;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.4s ease;
+}
+
+.work-box:hover .work-image-wrapper {
+  border-color: rgba(255, 65, 108, 0.6);
+  box-shadow: 0 0 40px rgba(255, 65, 108, 0.3), inset 0 0 20px rgba(255, 65, 108, 0.2);
+}
+
+.work-box:hover .work-image img {
+  filter: grayscale(0%);
+  transform: scale(1.1);
 }
 @media only screen and (max-height: 900px) {
   .work-image img {

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
-
-import Marquee from "react-fast-marquee";
+import Logo from "./Logo";
 
 const Loading = ({ percent }: { percent: number }) => {
   const { setIsLoading } = useLoading();
@@ -33,60 +32,154 @@ const Loading = ({ percent }: { percent: number }) => {
     });
   }, [isLoaded]);
 
-  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
-    const { currentTarget: target } = e;
-    const rect = target.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    target.style.setProperty("--mouse-x", `${x}px`);
-    target.style.setProperty("--mouse-y", `${y}px`);
+  // Matrix Digital Rain Effect
+  useEffect(() => {
+    const canvas = document.getElementById("matrix-bg") as HTMLCanvasElement;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    const matrix = "01".split("");
+    const fontSize = 16;
+    let columns = width / fontSize;
+
+    let drops: number[] = [];
+    for (let x = 0; x < columns; x++) {
+      drops[x] = Math.random() * height; // Start at random heights
+    }
+
+    const draw = () => {
+      ctx.fillStyle = "rgba(11, 8, 12, 0.1)"; // Slight dark fade
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = "#ff416c"; // Neon red color
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = matrix[Math.floor(Math.random() * matrix.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    };
+
+    const intervalId = setInterval(draw, 33);
+    
+    const handleResize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      columns = width / fontSize;
+      drops = [];
+      for (let x = 0; x < columns; x++) {
+        drops[x] = Math.random() * height;
+      }
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      clearInterval(intervalId);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const [hasStarted, setHasStarted] = useState(false);
+
+  const handleStart = () => {
+    setHasStarted(true);
+    window.dispatchEvent(new Event('start-loading-sequence'));
+  };
+
+  if (!hasStarted) {
+    return (
+      <div className="loading-screen" style={{ flexDirection: 'column', zIndex: 999999999 }}>
+        <canvas id="matrix-bg" className="matrix-bg"></canvas>
+        <div style={{ zIndex: 10, textAlign: 'center' }}>
+          <h2 style={{ color: 'var(--accentColor)', letterSpacing: '4px', margin: 0, fontSize: '30px' }}>SYSTEM STANDBY</h2>
+          <button 
+            onClick={handleStart}
+            style={{ 
+              padding: '15px 40px', 
+              background: 'rgba(255, 65, 108, 0.1)', 
+              border: '1px solid var(--accentColor)', 
+              color: 'white', 
+              cursor: 'pointer', 
+              marginTop: '40px', 
+              letterSpacing: '3px', 
+              fontFamily: 'monospace',
+              fontSize: '16px',
+              transition: 'all 0.3s',
+              borderRadius: '5px'
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = 'var(--accentColor)';
+              e.currentTarget.style.boxShadow = '0 0 20px var(--accentColor)';
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 65, 108, 0.1)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            INITIALIZE SEQUENCE
+          </button>
+        </div>
+      </div>
+    );
   }
 
+  // Calculate SVG stroke offset based on percentage
+  const radius = 120;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (percent / 100) * circumference;
+
   return (
-    <>
+    <div className={`loading-screen ${clicked ? "loading-clicked" : ""}`}>
+      <canvas id="matrix-bg" className="matrix-bg"></canvas>
       <div className="loading-header">
-        <a href="/#" className="loader-title" data-cursor="disable">
-          Logo
-        </a>
-        <div className={`loaderGame ${clicked && "loader-out"}`}>
-          <div className="loaderGame-container">
-            <div className="loaderGame-in">
-              {[...Array(27)].map((_, index) => (
-                <div className="loaderGame-line" key={index}></div>
-              ))}
-            </div>
-            <div className="loaderGame-ball"></div>
-          </div>
+        <Logo className="loader-title" />
+      </div>
+      
+      <div className={`cyber-ring-container ${loaded ? "ring-complete" : ""}`}>
+        <svg className="cyber-ring" width="300" height="300" viewBox="0 0 300 300">
+          <circle
+            className="ring-bg"
+            cx="150"
+            cy="150"
+            r={radius}
+            strokeWidth="8"
+            fill="none"
+          />
+          <circle
+            className="ring-progress"
+            cx="150"
+            cy="150"
+            r={radius}
+            strokeWidth="10"
+            fill="none"
+            strokeDasharray={circumference}
+            strokeDashoffset={strokeDashoffset}
+            strokeLinecap="round"
+          />
+        </svg>
+        
+        <div className="ring-content">
+          {!loaded ? (
+            <div className="ring-percent">{percent}%</div>
+          ) : (
+            <div className="ring-ready">SYSTEM<br/>HACKED</div>
+          )}
         </div>
       </div>
-      <div className="loading-screen">
-        <div className="loading-marquee">
-          <Marquee>
-            <span> A Creative Developer</span> <span>A Creative Designer</span>
-            <span> A Creative Developer</span> <span>A Creative Designer</span>
-          </Marquee>
-        </div>
-        <div
-          className={`loading-wrap ${clicked && "loading-clicked"}`}
-          onMouseMove={(e) => handleMouseMove(e)}
-        >
-          <div className="loading-hover"></div>
-          <div className={`loading-button ${loaded && "loading-complete"}`}>
-            <div className="loading-container">
-              <div className="loading-content">
-                <div className="loading-content-in">
-                  Loading <span>{percent}%</span>
-                </div>
-              </div>
-              <div className="loading-box"></div>
-            </div>
-            <div className="loading-content2">
-              <span>Welcome</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    </div>
   );
 };
 
@@ -110,7 +203,7 @@ export const setProgress = (setLoading: (value: number) => void) => {
         }
       }, 2000);
     }
-  }, 100);
+  }, 200);
 
   function clear() {
     clearInterval(interval);
@@ -128,7 +221,7 @@ export const setProgress = (setLoading: (value: number) => void) => {
           resolve(percent);
           clearInterval(interval);
         }
-      }, 2);
+      }, 40);
     });
   }
   return { loaded, percent, clear };
