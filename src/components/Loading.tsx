@@ -72,7 +72,7 @@ const Loading = ({ percent }: { percent: number }) => {
     };
 
     const intervalId = setInterval(draw, 33);
-    
+
     const handleResize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
@@ -105,16 +105,16 @@ const Loading = ({ percent }: { percent: number }) => {
         <canvas id="matrix-bg" className="matrix-bg"></canvas>
         <div style={{ zIndex: 10, textAlign: 'center' }}>
           <h2 style={{ color: 'var(--accentColor)', letterSpacing: '4px', margin: 0, fontSize: '30px' }}>SYSTEM STANDBY</h2>
-          <button 
+          <button
             onClick={handleStart}
-            style={{ 
-              padding: '15px 40px', 
-              background: 'rgba(255, 65, 108, 0.1)', 
-              border: '1px solid var(--accentColor)', 
-              color: 'white', 
-              cursor: 'pointer', 
-              marginTop: '40px', 
-              letterSpacing: '3px', 
+            style={{
+              padding: '15px 40px',
+              background: 'rgba(255, 65, 108, 0.1)',
+              border: '1px solid var(--accentColor)',
+              color: 'white',
+              cursor: 'pointer',
+              marginTop: '40px',
+              letterSpacing: '3px',
               fontFamily: 'monospace',
               fontSize: '16px',
               transition: 'all 0.3s',
@@ -129,7 +129,7 @@ const Loading = ({ percent }: { percent: number }) => {
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
-            INITIALIZE SEQUENCE
+            INITIALIZE ULTRON!
           </button>
         </div>
       </div>
@@ -147,7 +147,7 @@ const Loading = ({ percent }: { percent: number }) => {
       <div className="loading-header">
         <Logo className="loader-title" />
       </div>
-      
+
       <div className={`cyber-ring-container ${loaded ? "ring-complete" : ""}`}>
         <svg className="cyber-ring" width="300" height="300" viewBox="0 0 300 300">
           <circle
@@ -170,12 +170,12 @@ const Loading = ({ percent }: { percent: number }) => {
             strokeLinecap="round"
           />
         </svg>
-        
+
         <div className="ring-content">
           {!loaded ? (
             <div className="ring-percent">{percent}%</div>
           ) : (
-            <div className="ring-ready">SYSTEM<br/>HACKED</div>
+            <div className="ring-ready">SYSTEM<br />HACKED</div>
           )}
         </div>
       </div>

@@ -11,6 +11,26 @@
   margin: auto;
   z-index: 9;
 }
+@media only screen and (max-width: 768px) {
+  .whatIDO {
+    flex-direction: column;
+    height: auto;
+    padding-top: 50px;
+  }
+  .what-box {
+    width: 100% !important;
+  }
+  .what-box h2 {
+    margin-bottom: 20px !important;
+  }
+  .what-box-in {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+  .what-content {
+    width: 100% !important;
+  }
+}
 .what-box {
   width: 50%;
   display: flex;

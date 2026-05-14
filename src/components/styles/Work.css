@@ -27,6 +27,20 @@
 @media only screen and (max-width: 1100px) {
   .work-flex {
     grid-template-columns: 1fr;
+    gap: 60px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .work-section h2 {
+    font-size: 50px;
+    margin-top: 50px;
+  }
+  .work-title h3 {
+    font-size: 35px;
+    line-height: 40px;
+  }
+  .work-info h4 {
+    font-size: 16px;
   }
 }
 .work-title {
