@@ -92,12 +92,18 @@ body {
 }
 
 .techstack {
-  width: 100%;
+  width: 90%;
+  max-width: 1600px;
   position: relative;
-  height: var(--vh);
+  height: 80vh;
   margin: auto;
-  margin-top: 50px;
-  margin-bottom: -100px;
+  margin-top: 150px;
+  margin-bottom: 100px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 65, 108, 0.3);
+  box-shadow: 0 0 50px rgba(255, 65, 108, 0.15), inset 0 0 30px rgba(255, 65, 108, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .techstack h2 {
@@ -105,10 +111,12 @@ body {
   text-align: center;
   position: absolute;
   width: 100%;
-  top: 120px;
+  top: 80px;
   left: 0;
   font-weight: 400;
   text-transform: uppercase;
+  z-index: 10;
+  pointer-events: none;
 }
 
 @media screen and (min-width: 768px) {

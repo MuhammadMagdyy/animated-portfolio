@@ -1,65 +1,35 @@
-# My Portfolio Website - Overview 🚀
+# Animated 3D Portfolio
 
-This repository contains the open-source version of my personal portfolio website.  
-Feel free to explore the code and use it for learning and inspiration.
+Welcome to my personal portfolio! This is a highly interactive, 3D-integrated web application built with modern web technologies, showcasing my projects, tech stack, and experience. 
 
----
+## Features
 
-## ⚠️ Usage Notice
+- **Interactive 3D Elements:** Integrated Spline 3D character with physics-based tech stack spheres using `@react-three/fiber` and `@react-three/rapier`.
+- **GSAP Animations:** Smooth, staggered scroll reveals and timeline animations powered by GSAP.
+- **Glassmorphism UI:** Premium frosted glass UI overlays across the "What I Do" and "Tech Stack" sections.
+- **Dynamic Loading Sequence:** Custom audio-synchronized loading screen with Matrix-style background effects.
+- **Responsive Grid:** Fully responsive 2x2 project grid that scales elegantly to mobile.
 
-This project is shared for learning purposes only.
+## Tech Stack
+- **Framework:** React + Vite
+- **Styling:** Vanilla CSS, CSS Grid, CSS Variables
+- **Animations:** GSAP (GreenSock Animation Platform)
+- **3D Engine:** Three.js, React Three Fiber, Spline Viewer
 
-Please do NOT:
-- Clone or replicate the full website or design
-- Repost it with minor content changes
-- Use this project for commercial/client work
-- Create tutorials or content using this exact project
+## Getting Started
 
-If you use parts of the code, you must provide proper credit linking back to the original repository.
+To run this project locally, simply clone the repository and run the development server:
 
-Build your own version — don’t just copy.
+```bash
+# Install dependencies
+npm install
 
-— Moncy Yohannan
+# Start the development server
+npm run dev
+```
 
----
-
-## 🛠️ Instructions
-
-I have modified the GSAP Club plugins using trial versions.  
-⚠️ Note: Trial plugins cannot be used for production or hosting.
-
-For official GSAP Club plugins, refer here:  
-https://gsap.com/docs/v3/Installation/
-
----
-
-## ⚙️ Tech Stack
-
-React • TypeScript • GSAP • Three.js • WebGL • HTML • CSS • JavaScript
+## Deployment
+This project is optimized for deployment on platforms like Vercel or Netlify. Simply import the repository and deploy with zero configuration.
 
 ---
-
-## 🎨 Assets Usage
-
-Some 3D assets included in this repository are free to use for learning purposes.
-
-However:
-
-- The original 3D avatar used on my live portfolio is NOT included in this repository
-- That avatar is a custom asset created over ~1 month
-- It is not open source and not available for reuse
-
-Any usage, extraction, or redistribution of that avatar from my live website is strictly prohibited.
-
----
-
-![Protfolio-Preview](https://github.com/user-attachments/assets/3c4557e7-6392-4928-b8a9-7b2476ef4edd)
-
----
-
-## 📄 License
-
-This project is licensed under the Personal Portfolio License (PPL) v1.0.
-
-See the LICENSE file for full details
-
+*Built with ❤️ by Muhammad Magdy*
