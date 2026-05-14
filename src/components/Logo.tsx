@@ -5,7 +5,7 @@ const Logo = ({ className }: { className?: string }) => {
     <a href="#" className={`logo-container ${className || ""}`} data-cursor="disable">
       <div className="logo-flip-inner">
         <div className="logo-front">MM</div>
-        <div className="logo-back">مم</div>
+        <div className="logo-back">م م</div>
       </div>
     </a>
   );
